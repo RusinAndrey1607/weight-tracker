@@ -1,0 +1,64 @@
+.label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  margin-bottom: 14px;
+}
+
+.field:focus-within {
+  border-color: var(--accent);
+}
+
+.input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  outline: none;
+  font-size: 1.15rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.input::-webkit-calendar-picker-indicator {
+  filter: var(--date-icon-filter);
+}
+
+.unit {
+  color: var(--muted);
+}
+
+.hint {
+  margin: -8px 0 14px;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.error {
+  margin: 0 0 12px;
+  color: var(--danger);
+  font-size: 0.9rem;
+}
+
+.confirm {
+  margin: 0 0 16px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}

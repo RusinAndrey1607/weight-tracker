@@ -1,0 +1,11 @@
+.shell {
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  background: var(--bg);
+}
+
+.inner {
+  width: min(100%, var(--content-max));
+  padding: calc(8px + var(--safe-top)) 16px calc(var(--nav-height) + 20px);
+}
