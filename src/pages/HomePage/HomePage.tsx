@@ -10,8 +10,8 @@ import { WeightChart } from '../../features/weight/components/WeightChart.tsx'
 import { useWeightEntries } from '../../features/weight/hooks/useWeightEntries.ts'
 import {
   calculatePreviousWeekAverage,
-  calculateSevenDayChange,
   calculateWeeklyAverage,
+  calculateWeeklyChange,
   getCurrentWeight,
   getLatestEntry,
 } from '../../features/weight/utils/calculations.ts'
@@ -28,7 +28,7 @@ export function HomePage() {
     return {
       current: getCurrentWeight(entries),
       latestDate: latest?.date ?? null,
-      change7d: calculateSevenDayChange(entries),
+      change7d: calculateWeeklyChange(entries),
       weeklyAverage: calculateWeeklyAverage(entries, today),
       previousWeek: calculatePreviousWeekAverage(entries, today),
     }
