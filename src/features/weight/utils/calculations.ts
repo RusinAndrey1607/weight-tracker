@@ -68,20 +68,6 @@ export function calculatePreviousWeekAverage(
   return calculatePeriodAverage(entries, previousWeekStart, getEndOfWeek(previousWeekStart))
 }
 
-export function calculateSevenDayChange(entries: WeightEntry[]): number | null {
-  const latest = getLatestEntry(entries)
-  if (!latest) return null
-
-  const periodStart = getDateDaysAgo(7, latest.date)
-  const older = sortEntriesByDate(entries, 'desc').find(
-    (entry) => entry.date <= periodStart,
-  )
-
-  if (!older || older.id === latest.id) return null
-
-  return roundToTenth(latest.weight - older.weight)
-}
-
 export function filterEntriesByPeriod(
   entries: WeightEntry[],
   period: ChartPeriod,
@@ -118,4 +104,21 @@ export function groupEntriesByWeek(entries: WeightEntry[]): WeekGroup[] {
       entries: sortEntriesByDate(weekEntries, 'desc'),
       average: calculatePeriodAverage(weekEntries, weekStart, getEndOfWeek(weekStart)) ?? 0,
     }))
+}
+
+export function calculateWeeklyChange(
+  entries: WeightEntry[],
+  todayISO = getToday(),
+): number | null {
+  const currentWeekAverage = calculateWeeklyAverage(entries, todayISO)
+  const previousWeekAverage = calculatePreviousWeekAverage(entries, todayISO)
+
+  if (
+    currentWeekAverage === null ||
+    previousWeekAverage === null
+  ) {
+    return null
+  }
+
+  return roundToTenth(currentWeekAverage - previousWeekAverage)
 }
